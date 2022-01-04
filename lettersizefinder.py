@@ -18,14 +18,16 @@ def get_letter_size(path):
     heights = [0]
     counter = 0
 
+    threshold = 3
+
     for val in y_values:
-        if val > 0:
+        if val > threshold:
             heights[counter] += 1
         elif heights[counter] != 0:
             heights.append(0)
             counter += 1
 
     height = max(heights)
-    width = round(height / 1.6)
+    width = round(height / 1.62)
 
     return (width, height)
