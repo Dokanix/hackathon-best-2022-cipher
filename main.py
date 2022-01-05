@@ -11,9 +11,9 @@ import numpy as np
 import time
 
 start_time = time.time()
-file_name = 'decoded-szyfr_1'
-
-img = cv2.imread(file_name + '.png')
+file_name = 'szyfr_2'
+decode_image(f"Szyfr/{file_name}.png", f"{file_name}")
+img = cv2.imread('decoded-' + file_name + '.png')
 img = cv2.bitwise_not(img)
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 

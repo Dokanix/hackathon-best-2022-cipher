@@ -26,7 +26,3 @@ def decode_image(path, name):
     rgb_img.save(f'decoded-{name}.png', "PNG")
 
     print(f"Finished {name}")
-
-
-file_name = "szyfr_1"
-decode_image(f"Szyfr/{file_name}.png", f"{file_name}")
