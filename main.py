@@ -11,7 +11,6 @@ import numpy as np
 import time
 
 start_time = time.time()
-
 file_name = 'decoded-szyfr_1'
 
 img = cv2.imread(file_name + '.png')

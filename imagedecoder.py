@@ -1,5 +1,6 @@
 from PIL import Image
 
+
 def decode_image(path, name):
     colors = []
 
@@ -16,12 +17,16 @@ def decode_image(path, name):
                     if abs(rgb[0] - color[0]) + abs(rgb[1] - color[1]) + abs(rgb[2] - color[2]) < 5:
                         pixels[width, height] = (255, 255, 255)
                         append = False
-                    
+
                 if append:
                     colors.append(rgb)
-            
+
             else:
                 pixels[width, height] = (0, 0, 0)
     rgb_img.save(f'decoded-{name}.png', "PNG")
 
     print(f"Finished {name}")
+
+
+file_name = "szyfr_1"
+decode_image(f"Szyfr/{file_name}.png", f"{file_name}")
