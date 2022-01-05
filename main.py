@@ -8,8 +8,13 @@ from textfinder import find_words_by_mask
 from lettersizefinder import get_letter_size
 import cv2
 import numpy as np
+import time
 
-img = cv2.imread('decoded-szyfr_2.png')
+start_time = time.time()
+
+file_name = 'decoded-szyfr_1'
+
+img = cv2.imread(file_name + '.png')
 img = cv2.bitwise_not(img)
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
@@ -80,3 +85,11 @@ cv2.imwrite('output.png', im2)
 words = find_words_by_mask(
     './Szyfr/w_pustyni_i_w_puszczy.txt', overall_lengths)
 print(words[0], " ", words[-1])
+
+end_time = time.time()
+print(end_time - start_time)
+save = open(file_name + '.txt', 'w')
+content = str(words[0])
+content += ' '
+content += str(words[1])
+save.write(content)
