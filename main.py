@@ -9,7 +9,7 @@ from lettersizefinder import get_letter_size
 import cv2
 import numpy as np
 
-img = cv2.imread('decoded-szyfr_1.png')
+img = cv2.imread('decoded-szyfr_2.png')
 img = cv2.bitwise_not(img)
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
@@ -57,7 +57,14 @@ for letter in letters:
 
 sentence.sort_letters_in_lines()
 sentence.sort_lines()
-# print(len(sentence.lines))
+
+for line in sentence.lines:
+    iter = 0
+    for letter in line.letters:
+        iter += 1
+        cv2.rectangle(im2, (letter.x, letter.y), (letter.x + letter.w, letter.y + letter.h),
+                      (0, 255 * iter/len(line.letters), 0), 1)
+
 sentence.split_into_words()
 sentence.join_potential_lines()
 
@@ -69,11 +76,7 @@ for line in sentence.lines:
 
 print(overall_lengths)
 
-iter = 0
-# for letter in sentence.lines[1].letters:
-#     iter += 1
-#     cv2.rectangle(im2, (letter.x, letter.y), (letter.x + letter.w, letter.y + letter.h),
-#                   (0, 255 * iter/len(sentence.lines[1].letters), 0), 1)
-
-
 cv2.imwrite('output.png', im2)
+words = find_words_by_mask(
+    './Szyfr/w_pustyni_i_w_puszczy.txt', overall_lengths)
+print(words[0], " ", words[-1])
